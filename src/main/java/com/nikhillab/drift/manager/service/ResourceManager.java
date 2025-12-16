@@ -53,6 +53,8 @@ public class ResourceManager {
 
             saveSnapShot(snapshot.getSnapShotID(), resources);
 
+            
+
         } else {
             // not enabled for this type
         }

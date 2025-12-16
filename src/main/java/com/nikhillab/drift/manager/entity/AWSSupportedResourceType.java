@@ -34,6 +34,7 @@ public class AWSSupportedResourceType {
         this.service = service;
         this.resourceType = resourceType;
         this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     public Long getAwsSupportedResourceTypeId() {

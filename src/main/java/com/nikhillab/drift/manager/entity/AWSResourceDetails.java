@@ -51,6 +51,10 @@ public class AWSResourceDetails {
         this.service = service;
         this.lastReportedAt = lastReportedAt;
         this.properties = properties == null ? new ArrayList<>() : properties;
+        // Ensure bidirectional relationship is set on provided properties
+        for (AWSResourceDetailsProperty p : this.properties) {
+            p.setAwsResourceDetails(this);
+        }
     }
 
     public Long getAwsResourceDetailsId() {
@@ -122,7 +126,10 @@ public class AWSResourceDetails {
     }
 
     public void setProperties(List<AWSResourceDetailsProperty> properties) {
-        this.properties = properties;
+        this.properties = properties == null ? new ArrayList<>() : properties;
+        for (AWSResourceDetailsProperty p : this.properties) {
+            p.setAwsResourceDetails(this);
+        }
     }
 
     public void addProperty(AWSResourceDetailsProperty prop) {

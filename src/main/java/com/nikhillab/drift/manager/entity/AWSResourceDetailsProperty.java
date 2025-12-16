@@ -78,4 +78,10 @@ public class AWSResourceDetailsProperty {
         this.awsResourceDetails = awsResourceDetails;
     }
 
+    @Override
+    public String toString() {
+        return "AWSResourceDetailsProperty [name=" + name + ", lastReportedAt=" + lastReportedAt + ", data=" + data
+                + "]";
+    }
+
 }

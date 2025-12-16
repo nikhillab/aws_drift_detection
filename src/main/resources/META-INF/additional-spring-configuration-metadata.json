@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "aws.view.arn",
+  "type": "java.lang.String",
+  "description": "A description for 'aws.view.arn'"
+}]}
