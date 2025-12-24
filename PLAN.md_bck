@@ -1,0 +1,27 @@
+## Abstract
+This project is to govern AWS cloud environment for resources that is getting created on it.
+It uses resource exploral service provided by aws to get the details.
+
+## Planed Working of Project 
+Project have two module
+
+###  Module 1
+This module provide services related to enabling, fetching, ingesting and comparing resources details by using AWS SDK.
+It uses resource exploral service to fetch all the details.
+
+- ListSupportedResourceTypes : This API is used to get details of all the suported resources types by resource exploral service. Then we save the data to a table `aws_supported_resource_type` with columns `service` `resource_type` and `is_enabled`.
+- ListResources : This API is used to get details of resources from AWS and saved into table `aws_resource_details` with a snapshort id.
+- User uses the API `/api/supported-resources` to enable and disable the suported resources types.
+- User create a snapshort the given resources by calling `/api/resources/snapshots` API by providing `resourceTypeId` and `resourceType`
+- User uses `/api/resources/snapshots/compare` API call to compare the resources by providing snapshots ids `first` and `second` 
+- more features in exploration phase.
+
+###  Module 2
+This module is the main part of project 
+
+#### Plan 
+
+- User upload their acrhiture diagram by API call and some details related to it.
+- Backed serice will call a LLM with the image to extract the resources details from it and give a structured output.
+- Then the details will be saved to DB and the users provided details.
+- Then in background we will daily/weekly or need basis compare the resources with the details from `Module 1` to compare it on actual basis.
