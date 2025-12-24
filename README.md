@@ -34,13 +34,23 @@ The system is designed to be:
 
 **Responsibility**: Discover and store the actual state of AWS resources.
 
+#### Snapshot Semantics (Important)
+
+* **Each snapshot is scoped to exactly ONE AWS resource type** (e.g. `ec2:security-group`, `ecs:cluster`)
+* A snapshot represents a **point-in-time view of all resources of that type only**
+* There is **no global snapshot** across all AWS resources
+* Governance and drift checks must therefore:
+
+  * Operate **per resource type**, or
+  * Aggregate results across multiple snapshots (one per resource type)
+
 #### Key Capabilities
 
 * Enable/disable supported AWS resource types
 * Discover AWS resources using AWS Resource Explorer
 * Persist resource details, properties, and tags
-* Capture point-in-time snapshots
-* Compare snapshots for resource-level changes
+* Capture point-in-time snapshots **per resource type**
+* Compare snapshots for resource-level changes (within the same resource type)
 
 #### Key APIs
 
@@ -51,7 +61,7 @@ The system is designed to be:
 
 #### Data Model (Existing)
 
-* `SNAPSHOT`
+* `SNAPSHOT` (scoped by `RESOURCE_TYPE`)
 * `AWS_RESOURCE_DETAILS`
 * `AWS_RESOURCE_DETAILS_PROPERTY`
 * `AWS_SUPPORTED_RESOURCE_TYPE`
